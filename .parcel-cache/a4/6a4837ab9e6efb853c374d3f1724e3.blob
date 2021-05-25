@@ -1,0 +1,23 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "Company", function () {
+  return Company;
+});
+var _faker = require('faker');
+var _fakerDefault = _parcelHelpers.interopDefault(_faker);
+class Company {
+  constructor() {
+    this.companyName = _fakerDefault.default.company.companyName();
+    this.catchPhrase = _fakerDefault.default.company.catchPhrase();
+    this.location = {
+      lat: parseFloat(_fakerDefault.default.address.latitude()),
+      lng: parseFloat(_fakerDefault.default.address.longitude())
+    };
+  }
+  markerInfo() {
+    return `
+      <h1>Company Name: ${this.companyName}</h1>
+      <h3>Company phrase: ${this.catchPhrase}</h3>
+    `;
+  }
+}

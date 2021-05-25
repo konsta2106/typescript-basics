@@ -1,0 +1,31 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "CustomMap", function () {
+  return CustomMap;
+});
+class CustomMap {
+  constructor(divElement) {
+    this.googleMap = new google.maps.Map(document.getElementById(divElement), {
+      center: {
+        lat: 55,
+        lng: 55
+      },
+      zoom: 1
+    });
+  }
+  addMarker(mapMarker) {
+    const marker = new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: mapMarker.location.lat,
+        lng: mapMarker.location.lng
+      }
+    });
+    marker.addListener('click', () => {
+      const infoWindow = new google.maps.InfoWindow({
+        content: mapMarker.markerInfo()
+      });
+      infoWindow.open(this.googleMap, marker);
+    });
+  }
+}
